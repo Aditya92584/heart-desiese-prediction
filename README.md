@@ -63,4 +63,4 @@ This project is open-source and available under the **MIT License**. Feel free t
 If you have any questions, suggestions, feel free to reach out!
 
 * **LinkedIn:** [Aditya Srivastava](https://www.linkedin.com/in/aditya-srivastava-253b16334/)
-* **GitHub:** [@Aditya92584](https://github.com/your-username](https://github.com/Aditya92584)
+* **GitHub:** [@Aditya92584](https://github.com/Aditya92584)
