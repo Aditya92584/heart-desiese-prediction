@@ -1,5 +1,12 @@
 # 🫀 Heart Disease Prediction Using Machine Learning
 
+---
+
+## 🧠 Model Links & Deployment
+* **Live Demo:** [![Web App]([(https://heart-desiese-prediction-k0ok.onrender.com/)])
+
+---
+
 This repository contains a Machine Learning project focused on predicting the likelihood of heart disease in patients based on their medical attributes. The goal is to build a reliable classification model that can assist healthcare professionals in early detection.
 
 ---
@@ -40,3 +47,20 @@ The dataset typically includes the following clinical features:
 5. **Evaluation:** Assessing models using Accuracy, Precision, Recall, F1-score, and Confusion Matrix.
 
 ---
+
+## 📈 Results & Performance
+* **Best Model:** [K - Nearest Neighbors (KNN)]
+* **Accuracy:** [ 87.5% ]
+  
+---
+
+## 📄 License
+This project is open-source and available under the **MIT License**. Feel free to use, modify, and distribute it.
+
+---
+
+## 🤝 Connect with Me
+If you have any questions, suggestions, feel free to reach out!
+
+* **LinkedIn:** [Aditya Srivastava](https://www.linkedin.com/in/aditya-srivastava-253b16334/))
+* **GitHub:** [@Aditya92584]([https://github.com/your-username](https://github.com/Aditya92584))
