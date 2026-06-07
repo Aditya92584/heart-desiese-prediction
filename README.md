@@ -3,7 +3,7 @@
 ---
 
 ## 🧠 Model Links & Deployment
-* **Live Demo:** [![Web App]([(https://heart-desiese-prediction-k0ok.onrender.com/)])
+* **Live Demo:** [![Web App] https://heart-desiese-prediction-k0ok.onrender.com/
 
 ---
 
