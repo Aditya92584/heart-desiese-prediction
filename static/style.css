@@ -47,6 +47,37 @@ body {
     transition: var(--transition);
 }
 
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* अपने अनुसार बदलें */
+}
+
+/* आइकन्स का साइज़ और स्टाइल बदलने के लिए */
+footer a {
+    font-size: 24px;       /* यहाँ से साइज़ बड़ा करें (24px से 28px बेस्ट रहेगा) */
+    margin: 0 12px;        /* आइकन्स के बीच में थोड़ा गैप देने के लिए */
+    color: #9c9797;           /* आइकन्स का डिफ़ॉल्ट रंग */
+    transition: all 0.3s ease; /* होवर इफ़ेक्ट को स्मूथ बनाने के लिए */
+    display: inline-block;
+}
+
+/* जब माउस आइकन पर जाए (Hover Effect) */
+footer a:hover {
+    transform: translateY(-3px); /* हल्का सा ऊपर उठने का इफ़ेक्ट */
+}
+
+/* हर सोशल मीडिया का ओरिजिनल ब्रांड कलर देने के लिए (Optional) */
+footer a[aria-label="LinkedIn"]:hover { color: #0077b5; }
+footer a[aria-label="GitHub"]:hover { color: #24292e; }
+footer a[aria-label="Twitter"]:hover { color: #1da1f2; }
+
+footer p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(16px);

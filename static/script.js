@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const historyBody = document.getElementById('historyBody');
     const emptyHistoryRow = document.getElementById('emptyHistoryRow');
 
-    
     function validateFormInputs() {
         const inputs = form.querySelectorAll('input[type="number"]');
         for (let input of inputs) {
@@ -31,24 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         if (!validateFormInputs()) return;
 
-        
         placeholder.classList.add('hidden');
         highRiskCard.classList.add('hidden');
         lowRiskCard.classList.add('hidden');
         loader.classList.remove('hidden');
 
-        
         document.getElementById('resultOutput').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        
         const formData = new FormData(form);
         const payload = {
+            username: formData.get('userName'),
             age: formData.get('age'),
             sex: formData.get('sex'),
             chest_pain: formData.get('cp'),
@@ -63,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            
             const response = await fetch('/predict', {
                 method: 'POST',
                 headers: {
@@ -77,7 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
             loader.classList.add('hidden');
 
             if (data.success) {
+                // Sahi percentage pick karne ke liye variable
+                let finalPercentage = 0;
+
                 if (data.prediction === 1) {
+                    finalPercentage = data.high_risk_prob; // High risk percentage
                     document.getElementById('highRiskProb').innerHTML = `
                         <div class="probability-container" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; width: 100%;">
                             <div class="prob-badge high-accent" style="display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; background: rgba(231, 76, 60, 0.15); color: #bd2130; border-left: 4px solid #e74c3c;">
@@ -92,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     highRiskCard.classList.remove('hidden');
                 } else {
-                    
+                    finalPercentage = data.low_risk_prob; // Low risk percentage
                     document.getElementById('lowRiskProb').innerHTML = `
                         <div class="probability-container" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; width: 100%;">
                             <div class="prob-badge low-accent" style="display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.95rem; font-weight: 500; background: rgba(46, 204, 113, 0.15); color: #1e7e34; border-left: 4px solid #2ecc71;">
@@ -108,8 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     lowRiskCard.classList.remove('hidden');
                 }
 
-                
-                addLogToHistory(formData, data.prediction);
+                // History function me ab percentage bhi pass ho raha hai
+                addLogToHistory(formData, data.prediction, finalPercentage);
             } else {
                 alert(`Pipeline Inference Error: ${data.message || data.error}`);
                 placeholder.classList.remove('hidden');
@@ -123,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
     resetBtn.addEventListener('click', () => {
         if(confirm("Kya aap data inputs reset karna chahte hain?")) {
             form.reset();
@@ -134,13 +132,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
-    function addLogToHistory(formData, prediction) {
+    // Function me percentage accept karne ke liye param jod diya hai
+    function addLogToHistory(formData, prediction, percentage) {
         if (emptyHistoryRow) {
             emptyHistoryRow.style.display = 'none';
         }
 
         const timestamp = new Date().toTimeString().split(' ')[0];
+        const name = formData.get('userName') || 'Guest User';
         const age = formData.get('age') || '40';
         const sex = formData.get('sex') === "1" ? "Male" : "Female";
         const bp = formData.get('trestbps') || '120';
@@ -152,12 +151,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const tr = document.createElement('tr');
         tr.style.animation = "slideIn 0.3s ease-out";
+        
+        // Ab yahan 6 alag-alag <td> tags hain (6 columns ke liye)
         tr.innerHTML = `
             <td><strong>${timestamp}</strong></td>
+            <td><span style="font-weight: 600; color: #333;"> ${name}</span></td>
             <td>${age} Yrs / ${sex}</td>
             <td>${bp} / ${chol}</td>
             <td>${hr} BPM</td>
-            <td><span class="alert-card ${badge}" style="padding: 0.2rem 0.6rem; font-size: 0.8rem; font-weight: bold; margin: 0; display: inline-block;">${text}</span></td>
+            <td>
+                <span class="alert-card ${badge}" style="padding: 0.2rem 0.6rem; font-size: 0.8rem; font-weight: bold; margin: 0; display: inline-block;">
+                    ${text} (${percentage}%)
+                </span>
+            </td>
         `;
 
         historyBody.insertBefore(tr, historyBody.firstChild);

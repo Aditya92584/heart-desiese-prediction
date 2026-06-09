@@ -29,7 +29,12 @@
 
     <header id="hero" class="hero-section">
         <div class="hero-content">
-            <h1>Advanced KNN Heart Risk Assessment</h1>
+            <h1>Advanced Heart Risk Assessment</h1>
+            <div class="developer-badge" style="text-align: center; margin-bottom: 2rem;">
+            <span style="background: #eef2f7; color: #333; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 500; border: 1px solid #dcdcdc;">
+                 Developer: <strong>Aditya Srivastava</strong>
+                </span>
+            </div>
             <p>By optimizing your clinical data patterns, our trained KNN model helps predict cardiac anomalies with better accuracy.</p>
             <a href="#analyzer" class="btn btn-primary">Start Diagnosis <i class="fa-solid fa-arrow-down"></i></a>
         </div>
@@ -43,14 +48,18 @@
         <section id="analyzer" class="analyzer-section">
             <div class="section-title">
                 <h2>Cardiovascular Risk Analyzer</h2>
-                <p>Please carefully fill in all the 13 clinical details below.</p>
+                <p>To evaluate your heart health, please provide the 12 clinical parameters below. Your data is processed securely.</p>
             </div>
 
             <div class="grid-layout">
                 <div class="card glass-card form-card">
                     <form id="predictionForm" onsubmit="return false;">
                         <div class="form-grid">
-                            
+                            <div class="form-group">
+                                <label for="userName">User Name:</label>
+                                <input type="text" id="userName" name="userName" placeholder="Enter patient name" required>
+                            </div>
+
                             <div class="form-group">
                                 <label for="age">Age (years)</label>
                                 <input type="number" id="age" name="age" min="1" max="120" placeholder="e.g., 45" required>
@@ -148,7 +157,7 @@
                         <div class="placeholder-result">
                             <i class="fa-solid fa-heart-pulse heartbeat-icon"></i>
                             <h3>Awaiting Form Submission</h3>
-                            <p>Fill in the inputs and click the 'Analyze Report' button to run the KNN prediction pipeline.</p>
+                            <p>Provide the required health markers and click 'Analyze Report' to activate our smart prediction model.</p>
                         </div>
                         
                         <div class="loader-container hidden" id="loader">
@@ -211,11 +220,12 @@
                 <table class="history-table" id="historyTable">
                     <thead>
                         <tr>
-                            <th>Time Stamp</th>
+                            <th>Time</th>
+                            <th>Patient Name</th>
                             <th>Age / Sex</th>
-                            <th>BP / Cholesterol</th>
+                            <th>BP / Chol</th>
                             <th>Max Heart Rate</th>
-                            <th>KNN Status</th>
+                            <th>Risk Status (%)</th>
                         </tr>
                     </thead>
                     <tbody id="historyBody">
@@ -236,7 +246,7 @@
                 <div class="card glass-card info-card contact-info" style="text-align: center;">
                     <h3>CardioGuard Platform Integration</h3>
                     <p><i class="fa-solid fa-envelope"></i> adityasrivastava_dams@gmail.com</p>
-                    <p><i class="fa-solid fa-server"></i> Scaled Pipeline Secure Subsystem Status: <strong>Online</strong></p>
+                    <p><i class="fa-solid fa-server"></i> CardioGuard Engine:<strong> Active</strong></p>
                 </div>
             </div>
         </section>
