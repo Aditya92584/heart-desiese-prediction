@@ -3,7 +3,7 @@
 ---
 
 ## 🧠 Model Links & Deployment
-* **Live Demo:** [Click for a live demo](https://heart-desiese-prediction-k0ok.onrender.com/)
+* **Live Demo:** [Click for a live demo](https://heart-desiese-prediction-1-tpsd.onrender.com/)
 
 ---
 
